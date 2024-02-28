@@ -9,7 +9,13 @@ def preprocess(data):
 
     df = pd.DataFrame({'user_message': messages, 'message_date': dates})
     # convert message_date type
-    df['message_date'] = pd.to_datetime(df['message_date'], format='%m/%d/%y, %H:%M - ')
+    #df['message_date'] = pd.to_datetime(df['message_date'], format='%m/%d/%y, %H:%M - ')
+    # Update the format string to match the datetime format in your data
+    format_string = '%d/%m/%y, %H:%M - '
+
+    # Use pd.to_datetime to convert the 'message_date' column to datetime format
+    df['message_date'] = pd.to_datetime(df['message_date'], format=format_string)
+
 
     df.rename(columns={'message_date': 'date'}, inplace=True)
 
